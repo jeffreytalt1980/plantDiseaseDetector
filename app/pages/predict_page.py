@@ -19,27 +19,6 @@ def on_predict_click(image: str):
     # Predict the class
     return predict(model=model, image_tensor=image_tensor, device=device)
 
-# def predict_page():
-#     st.header("Predict")
-#     st.markdown(
-#         """
-#         Upload an image file (png, jpg, or jpeg) of a plant leaf to predict its condition.
-#         """
-#     )
-    
-#     # File uploader
-#     test_image = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-    
-#     if test_image is not None:
-#         st.image(test_image, caption='Uploaded Image', use_container_width=True)
-       
-#         if(st.button("Predict")):
-#             with st.spinner("Thinking..."):
-#                 # Call the predict function
-#                 prediction, confidence = on_predict_click(test_image)
-#                 st.write("Prediction:")
-#                 st.success(f"The model predicts that this is \"{prediction}\" with a confidence of {confidence*100:.2f}%.")
-
 def predict_page():
     st.header("Predict")
     st.markdown(

@@ -1,3 +1,6 @@
+import sys
+sys.modules['torch.classes'] = None # Exclude to prevent PyTorch/Streamlit compatibility error
+
 import torch 
 import timm
 from torchvision import transforms
