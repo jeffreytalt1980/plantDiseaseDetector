@@ -51,4 +51,3 @@ def predict(model: torch.nn.Module, image_tensor: torch.Tensor, device: torch.de
     print(torch.softmax(prediction_weights, dim=1))
 
     return get_prediction_label(prediction), confidence
-

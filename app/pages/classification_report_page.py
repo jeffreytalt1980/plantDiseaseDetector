@@ -30,26 +30,8 @@ def classification_report_page():
         if 'support' in dataframe_report.columns:
             dataframe_report['support'] = dataframe_report['support'].astype(int)
 
-        # macro_avg = report.pop('macro avg')
-        # weighted_avg = report.pop('weighted avg')
-
         accuracy_dataframe = pd.DataFrame([["", "", round(accuracy, 2), int(support)]], columns=dataframe_report.columns, index=['accuracy'])
-      
-        # dataframe_report.loc['macro avg'] = [f"{macro_avg['precision']:.2f}", f"{macro_avg['recall']:.2f}", f"{macro_avg['f1-score']:.2f}", f"{macro_avg['support']:.0f}"]
-        # dataframe_report.loc['weighted avg'] = [f"{weighted_avg['precision']:.2f}", f"{weighted_avg['recall']:.2f}", f"{weighted_avg['f1-score']:.2f}", f"{weighted_avg['support']:.0f}"]
-        
+    
         dataframe_report = pd.concat([dataframe_report[:len(dataframe_report)-2], accuracy_dataframe, dataframe_report[len(dataframe_report)-2:]], ignore_index=False)
         
         st.table(dataframe_report)
-
-
-
-        # matrix = confusion_matrix(total_labels, total_predictions)
-
-        # plt.figure(figsize=(40,40))
-        # sns.heatmap(matrix, annot=True, annot_kws={'size':10})
-        # plt.xlabel("Predicted Class", fontsize=20)
-        # plt.ylabel("Actual Class", fontsize=20)
-        # plt.title("Plant Disease Prediction Confusion Matrix", fontsize=30)
-        
-        # st.pyplot(plt)
