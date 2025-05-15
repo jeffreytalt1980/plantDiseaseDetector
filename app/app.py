@@ -1,10 +1,10 @@
 import streamlit as st
 
-from pages.home_page import home_page
-from pages.about_page import about_page
-from pages.predict_page import predict_page
-from pages.confusion_matrix_page import confusion_matrix_page
-from pages.classification_report_page import classification_report_page
+from page_files.home_page import home_page
+from page_files.about_page import about_page
+from page_files.predict_page import predict_page
+from page_files.confusion_matrix_page import confusion_matrix_page
+from page_files.classification_report_page import classification_report_page
 
 def navigation_switch(app_mode: str):
     """
@@ -23,7 +23,6 @@ def navigation_switch(app_mode: str):
             classification_report_page()
         case _:
             home_page()
-
 
 # Sidebar
 st.sidebar.title("Navigation")    
