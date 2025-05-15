@@ -1,8 +1,10 @@
 import streamlit as st
+import os
 
 def home_page():
     st.header("Plant Disease Recognition System") 
-    image_path = "images/home_page.jpeg"
+    base_dir = os.path.abspath(os.path.join(__file__, "../../"))
+    image_path = os.path.join(base_dir, "images", "home_page.jpeg")
     st.image(image_path, caption="Home Page", use_container_width=True)
     st.markdown(
         """
