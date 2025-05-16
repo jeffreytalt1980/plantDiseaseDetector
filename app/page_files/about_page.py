@@ -8,7 +8,7 @@ def about_page():
         This uses used a pretrained Swin Transformer from the timm library that was fine-tuned on the PlantVillage dataset.
         It utilized the 'swin_tiny_patch4_window7_224' architecture which has patch size of 4, window size of 7, and an input image size of 224x224.
         The model was trained for 10 epochs with a batch size of 32, and a learning rate of 0.0001.
-        It was trained on a NVIDIA GeForce GTX 1650 GPU with 4GB of VRAM. 
+        Versions of it were trained on a NVIDIA GeForce GTX 1650 GPU with 4GB of VRAM and TPU at Google Colab. 
 
         ### About the Dataset
         This version of the PlantVillage dataset is was downloaded from TensorFlow Datasets. 

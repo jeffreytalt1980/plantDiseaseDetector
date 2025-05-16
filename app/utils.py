@@ -7,15 +7,26 @@ from torchvision import transforms
 from PIL import Image
 
 from constants import IMAGE_SIZE, NORMALIZATION_MEAN, NORMALIZATION_STD, class_names, class_names_output_map
+from model.CustomHead import CustomHead
 
 def load_model(path: str, device: torch.device) -> torch.nn.Module:
     """
     Load the pre-trained model
     """
-    model = timm.create_model('swin_tiny_patch4_window7_224', pretrained=False, num_classes=len(class_names))
+    number_of_classes = len(class_names)
+    # create the model
+    model = timm.create_model('swin_tiny_patch4_window7_224', pretrained=False, num_classes=number_of_classes)
+
+    # replace with custom head
+    in_features = model.head.in_features
+    model.head = CustomHead(in_features, number_of_classes)
+  
+    # replace the weights with weights saved from training
     model.load_state_dict(torch.load(path, map_location=device))
+    
     model.eval()
     model.to(device)
+    
     return model
     
 def preprocess_image(image_path: str) -> torch.Tensor:
@@ -46,7 +57,7 @@ def predict(model: torch.nn.Module, image_tensor: torch.Tensor, device: torch.de
 
     # Make prediction
     with torch.no_grad():  
-        prediction_weights = model(image_tensor)
+        prediction_weights = model(image_tensor).mean(dim=1)
     
     prediction = torch.argmax(prediction_weights, dim=1).item()
     confidence = torch.softmax(prediction_weights, dim=1).max().item()

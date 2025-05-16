@@ -12,7 +12,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Pytorch Model Prediction
 def on_predict_click(image: str):
     # Load the pre-trained model
-    model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../swin_model_10_epochs2.pth"))
+    model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../swin_model_plant_disease_detector.pth"))
     model = load_model(model_path, device=device)
     
     # Preprocess the image

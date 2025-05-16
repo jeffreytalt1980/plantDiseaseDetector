@@ -21,17 +21,20 @@ def classification_report_page():
         support = report['macro avg']['support']
 
         dataframe_report = pd.DataFrame(report).transpose()
-        # dataframe_report = dataframe_report.applymap(lambda x: f"{x:.2f}" if isinstance(x, (int, float)) else x)
 
         for col in ['precision', 'recall', 'f1-score']:
             if col in dataframe_report.columns:
-                dataframe_report[col] = dataframe_report[col].apply(lambda x: f"{x:.2f}" if pd.notnull(x) else "")
+                dataframe_report[col] = dataframe_report[col].apply(lambda x: round(x,2) if pd.notnull(x) else None)
 
         if 'support' in dataframe_report.columns:
             dataframe_report['support'] = dataframe_report['support'].astype(int)
-
-        accuracy_dataframe = pd.DataFrame([["", "", round(accuracy, 2), int(support)]], columns=dataframe_report.columns, index=['accuracy'])
     
+        accuracy_dataframe = pd.DataFrame(
+            [[None, None, round(accuracy, 2), int(support)]],
+            columns=dataframe_report.columns,
+            index=['accuracy']
+        ).dropna(how='all', axis=1)
+
         dataframe_report = pd.concat([dataframe_report[:len(dataframe_report)-2], accuracy_dataframe, dataframe_report[len(dataframe_report)-2:]], ignore_index=False)
         
         st.table(dataframe_report)
