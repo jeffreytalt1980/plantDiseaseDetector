@@ -29,6 +29,6 @@ def navigation_switch(app_mode: str):
 
 # Sidebar
 st.sidebar.title("Navigation")    
-app_mode = st.sidebar.selectbox("Select Page", ["Home", "About", "Predict", "Confusion Matrix", "Classification Report", "Accuracy Visualization"])
+app_mode = st.sidebar.selectbox("Select Page", ["Home", "Predict", "Classification Report", "Confusion Matrix", "Accuracy Visualization", "About"])
 
 navigation_switch(app_mode)
