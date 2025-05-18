@@ -32,6 +32,7 @@ Information about the model and dataset
 * CUDA
 * Git
 * Git-lfs
+* Docker
 
 ### Dependencies:
 * PyTorch
@@ -55,6 +56,9 @@ sudo docker build -t plant-disease-detector-image:v1.0
 sudo docker run -p 8501:8501 plant-disease-detector-image:v1.0
 ```
 3. Navigate to the website: http://localhost:8501
+
+## Usage Instructions
+To conduct a prediction, upload an image (or images) file in jpg or png format. If you upload a singular image, it will be immediately shown with a "Predict" button. Clicking the button will return a prediction with associated confidence value for the image. If you upload a group of images, a "Predictions" button will be displayed. Clicking the button will print each image with its associated prediction and confidence score.
 
 ## Link to share.streamlit.io Deployment
 The application is also deployed on share.streamlit.io:
