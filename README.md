@@ -72,7 +72,7 @@ sudo docker run -p 8501:8501 plant-disease-detector-image:v1.0
 ### On Local Machine
 1. Install the dependencies:
 ```
-pip install requirements.txt
+pip install -r app/requirements.txt
 ```
 2. Start Streamlit Application:
 ```
