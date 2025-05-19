@@ -4,10 +4,13 @@ This is Jeffrey Alt's Plant Disease Prediction Project for the Troy University c
 This application is used to detect the status of leaves within 38 combinations of species/disease (or healthy status). It can be used by farmers or agricultural professionals to get ahead of diseases to treat or isolate diseased specimens and in turn prevent loss of crops. This important to preventing food insecurity as the world population continues to grow and various natural and man-made factors impact the stability of crop yields. 
 
 ### Model Summary
-This application utilizes a Swin Tranformer model trained with PyTorch to predict the classification of disease/healthy status when presented with an image of a leaf. It was trained from a timm 'swin_tiny_patch4_window7_224' architecture using Google Colab resources and following the steps defined in the included jupyter notebook. The model version was produced during my second to last run and included extensive data augmentation techniques, label smoothing, dropout, and an optimizer running the AdamW algorithm. 
+This application utilizes a Swin Tranformer model trained with PyTorch to predict the classification of disease/healthy status when presented with an image of a leaf. It was trained from a timm 'swin_tiny_patch4_window7_224' architecture using Google Colab resources and following the steps defined in the included Jupyter notebook. A CNN model was also trained as a baseline (not included). The model version used in the web application was produced during my second to last run and included extensive data augmentation techniques, label smoothing, dropout, and an optimizer running the AdamW algorithm. The final run which included weighted decay produced a product with inferior confidence scores for images that did not contain leaves. 
 
 ### Dataset
-This model uses the a version of the PlantVillage dataset downloaded from TensorFlow's Datasets Catalog. It contains 53,305 samples across 38 classes. It is as close to the original, unaugmented PlantVillage dataset that was readily available. The dataset can be found at: [Plant Village](https://www.tensorflow.org/datasets/catalog/plant_village).
+This model uses the a version of the PlantVillage dataset downloaded from TensorFlow's Datasets Catalog. It contains 53,305 samples across 38 classes. It is as close to the original, unaugmented PlantVillage dataset that was readily available. The dataset can be found at: [Plant Village](https://www.tensorflow.org/datasets/catalog/plant_village). All pre-processing occurs within the training pipline defined in the included Jupyter notebook
+
+### Key Results
+Metrics for the model can be found in the Jupyter notebook included with this application as well as in the application on the classification report page.
 
 ## Pages
 
@@ -56,20 +59,20 @@ Information about the model and dataset
 ### With Docker
 1. Build the docker file:
 ```
-sudo docker build -t plant-disease-detector-image:v1.0
+sudo docker build -t plant-disease-detector-image:v1.0 .
 ```
-2. Run the dockerfile:
+2. Run the dockerfile (from the /plantDiseaseDetector directory):
 ```
 sudo docker run -p 8501:8501 plant-disease-detector-image:v1.0
 ```
 3. Navigate to the website: http://localhost:8501
 
 ### On Local Machine
-1. Install the dependencies (from the /plantDiseaseDetector directory)
+1. Install the dependencies (from the /plantDiseaseDetector directory):
 ```
 pip install requirements.txt
 ```
-2. Start Streamlit Application
+2. Start Streamlit Application:
 ```
 streamlit run app/app.py
 ```
