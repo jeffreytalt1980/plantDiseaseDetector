@@ -65,7 +65,7 @@ def predict_page():
     test_images = st.file_uploader("Upload image files (png, jpg, or jpeg) of plant leaves to predict their condition.", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
     
     if len(test_images) == 1:
-        st.image(test_images[0], use_container_width=True)
+        st.image(test_images[0], caption=test_images[0].name, use_container_width=True)
 
         if(st.button("Predict")):
             with st.spinner("Thinking..."):
@@ -86,7 +86,7 @@ def predict_page():
                 
                 st.write("Predictions:")
                 for test_image, prediction, confidence in predictions:
-                    st.image(test_image, caption='Uploaded Image', use_container_width=True)
-                    st.success(f"The model predicts that \"{test_image.name}\" is \"{prediction}\" with a confidence of {confidence*100:.2f}%.")
+                    st.image(test_image, caption=test_image.name, use_container_width=True)
+                    st.success(f"The model predicts that the image \"{test_image.name}\" is \"{prediction}\" with a confidence of {confidence*100:.2f}%.")
 
     st.session_state.test_images = None

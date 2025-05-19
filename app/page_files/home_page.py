@@ -8,7 +8,7 @@ def home_page():
     st.image(image_path, caption="Home Page", use_container_width=True)
     st.markdown(
         """
-        This is a plant disease recognition system that helps farmers and agricultural professionals identify diseases in plants using machine learning techniques. 
-        The system uses a pre-trained model to analyze images of plants and provide accurate predictions of potential diseases.
+        This is a plant disease recognition system. It can assist farmers in identification of diseases in plants. It uses a Swin Transformer
+        trained using machine learning techniques. The model analyzes images of plants and provides predictions of potential diseases.
         """
     )   
