@@ -78,5 +78,5 @@ def get_attention_hook(module, input, output):
     """
     return attention_maps.append(output)
 
-def get_device() -> str:
+def get_device() -> torch.device:
     torch.device("cuda" if torch.cuda.is_available() else "cpu")
